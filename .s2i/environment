@@ -1,2 +1,5 @@
 # The default environment for this Ruby application is production
 RACK_ENV=production
+#HTTP_PROXY=http://USERNAME:PASSWORD@10.0.1.1:8080/
+#HTTPS_PROXY=https://USERNAME:PASSWORD@10.0.0.1:8080/
+#NO_PROXY=master.hostname.example.com
