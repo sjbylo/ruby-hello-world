@@ -15,6 +15,13 @@ def self.connect_to_database_prod
       config[:password] = "#{ENV["MYSQL_PASSWORD"]}"
     end
 
+    if ENV.key?("RDS_ENDPOINT_ADDRESS")
+      config[:host]     = "#{ENV["RDS_ENDPOINT_ADDRESS"]}"
+      config[:port]     = "#{ENV["RDS_PORT"]}"
+      config[:username] = "#{ENV["RDS_MASTER_USERNAME"]}"
+      config[:password] = "#{ENV["RDS_MASTER_USER_PASSWORD"]}"
+    end
+
     puts "Connecting to production database (#{config[:username]}@#{config[:host]}:#{config[:port]})..."
     ActiveRecord::Base.establish_connection(config)
 
@@ -42,6 +49,14 @@ def self.connect_to_database_test
       config[:username] = ENV["MYSQL_USER"]
       config[:password] = ENV["MYSQL_PASSWORD"]
     end
+
+    if ENV.key?("RDS_ENDPOINT_ADDRESS")
+      config[:host]     = "#{ENV["RDS_ENDPOINT_ADDRESS"]}"
+      config[:port]     = "#{ENV["RDS_PORT"]}"
+      config[:username] = "#{ENV["RDS_MASTER_USERNAME"]}"
+      config[:password] = "#{ENV["RDS_MASTER_USER_PASSWORD"]}"
+    end
+
 
     puts "Connecting to test database (#{config[:username]}@#{config[:host]}:#{config[:port]})..."
     ActiveRecord::Base.establish_connection(config)
