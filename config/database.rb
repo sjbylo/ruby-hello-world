@@ -20,6 +20,7 @@ def self.connect_to_database_prod
       config[:port]     = "#{ENV["RDS_PORT"]}"
       config[:username] = "#{ENV["RDS_MASTER_USERNAME"]}"
       config[:password] = "#{ENV["RDS_MASTER_USER_PASSWORD"]}"
+      config[:database] = "#{ENV["RDS_DB_NAME"]}"
     end
 
     puts "Connecting to production database (#{config[:username]}@#{config[:host]}:#{config[:port]})..."
@@ -55,6 +56,7 @@ def self.connect_to_database_test
       config[:port]     = "#{ENV["RDS_PORT"]}"
       config[:username] = "#{ENV["RDS_MASTER_USERNAME"]}"
       config[:password] = "#{ENV["RDS_MASTER_USER_PASSWORD"]}"
+      config[:database] = "#{ENV["RDS_DB_NAME"]}"
     end
 
 
