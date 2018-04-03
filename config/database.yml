@@ -5,11 +5,11 @@
 <% port     = ENV["DATABASE_SERVICE_PORT"] %>
 <% database = ENV["MYSQL_DATABASE"] %>
 
-<% user     = ENV.key?("RDS_ENDPOINT_ADDRESS") ? ENV["RDS_MASTER_USERNAME"] : "" %>
-<% password = ENV.key?("RDS_ENDPOINT_ADDRESS") ? ENV["RDS_MASTER_USER_PASSWORD"] : "" %>
-<% host     = ENV.key?("RDS_ENDPOINT_ADDRESS") ? ENV["RDS_ENDPOINT_ADDRESS"] : "" %>
-<% port     = ENV.key?("RDS_ENDPOINT_ADDRESS") ? ENV["RDS_PORT"] : "" %>
-<% database = ENV.key?("RDS_ENDPOINT_ADDRESS") ? ENV["RDS_DB_NAME"] : "" %>
+<% user     = ENV.key?("RDS_ENDPOINT_ADDRESS") ? ENV["RDS_MASTER_USERNAME"] :      ENV["MYSQL_USER"] %>
+<% password = ENV.key?("RDS_ENDPOINT_ADDRESS") ? ENV["RDS_MASTER_USER_PASSWORD"] : ENV["MYSQL_PASSWORD"] %>
+<% host     = ENV.key?("RDS_ENDPOINT_ADDRESS") ? ENV["RDS_ENDPOINT_ADDRESS"] :     ENV["DATABASE_SERVICE_HOST"] %>
+<% port     = ENV.key?("RDS_ENDPOINT_ADDRESS") ? ENV["RDS_PORT"] :                 ENV["DATABASE_SERVICE_PORT"] %>
+<% database = ENV.key?("RDS_ENDPOINT_ADDRESS") ? ENV["RDS_DB_NAME"] :              ENV["MYSQL_DATABASE"] %>
 
 development:
   adapter: mysql2
