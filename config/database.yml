@@ -1,6 +1,9 @@
 <% # Handle old behaviour of official mysql image %>
-<% user = ENV.key?("MYSQL_ROOT_PASSWORD") ? "root" : ENV["MYSQL_USER"] %>
+<% user     = ENV.key?("MYSQL_ROOT_PASSWORD") ? "root" : ENV["MYSQL_USER"] %>
 <% password = ENV.key?("MYSQL_ROOT_PASSWORD") ? ENV["MYSQL_ROOT_PASSWORD"] : ENV["MYSQL_PASSWORD"] %>
+<% host     = ENV["DATABASE_SERVICE_HOST"] %>
+<% port     = ENV["DATABASE_SERVICE_PORT"] %>
+<% database = ENV["MYSQL_DATABASE"] %>
 
 <% user     = ENV.key?("RDS_ENDPOINT_ADDRESS") ? ENV["RDS_MASTER_USERNAME"] %>
 <% password = ENV.key?("RDS_ENDPOINT_ADDRESS") ? ENV["RDS_MASTER_USER_PASSWORD"] %>
@@ -10,24 +13,24 @@
 
 development:
   adapter: mysql2
-  database: <%= ENV["MYSQL_DATABASE"] %>
+  database: <%= database %>
   username: <%= user %>
   password: <%= password %>
-  host: <%= ENV["DATABASE_SERVICE_HOST"] %>
-  port: <%= ENV["DATABASE_SERVICE_PORT"] %>
+  host:     <%= host %>
+  port:     <%= port %>
 
 test:
   adapter: mysql2
-  database: <%= ENV["MYSQL_DATABASE"] %>
+  database: <%= database %>
   username: <%= user %>
   password: <%= password %>
-  host: <%= ENV["DATABASE_TEST_SERVICE_HOST"] %>
-  port: <%= ENV["DATABASE_TEST_SERVICE_PORT"] %>
+  host:     <%= host %>
+  port:     <%= port %>
 
 production:
   adapter: mysql2
-  database: <%= ENV["MYSQL_DATABASE"] %>
+  database: <%= database %>
   username: <%= user %>
   password: <%= password %>
-  host: <%= ENV["DATABASE_SERVICE_HOST"] %>
-  port: <%= ENV["DATABASE_SERVICE_PORT"] %>
+  host:     <%= host %>
+  port:     <%= port %>
